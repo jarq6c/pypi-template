@@ -5,7 +5,13 @@ HASHFILE=sha256sum.txt
 PYENV=miniconda3
 PYTHON=$(PYENV)/bin/python3
 
-.PHONY: build checksum clean
+.PHONY: develop tests build checksum clean
+
+develop: $(PYENV)/bin/activate
+	$(PYTHON) -m pip install -e .[develop]
+
+tests: $(PYENV)/bin/activate
+	$(PYTHON) -m pytest -s
 
 build: $(PYENV)/bin/activate
 	$(PYTHON) -m build
