@@ -10,10 +10,9 @@ PYTHON=$(PYENV)/bin/python3
 build: $(PYENV)/bin/activate
 	$(PYTHON) -m build
 
-$(PYENV)/bin/activate: checksum requirements.txt
+$(PYENV)/bin/activate: checksum
 	test -d $(PYENV) || bash ./$(INSTALLER) -b -p $(PYENV)
 	$(PYTHON) -m pip install -U pip wheel setuptools build pytest
-	$(PYTHON) -m pip install -r requirements.txt
 	touch $(PYENV)/bin/activate
 
 checksum: $(INSTALLER) $(HASHFILE)
