@@ -10,7 +10,7 @@ PYTHON=$(PYENV)/bin/python3
 develop: $(PYENV)/bin/activate
 	$(PYTHON) -m pip install -e .[develop]
 
-tests: $(PYENV)/bin/activate
+tests: develop
 	$(PYTHON) -m pytest -s
 
 build: $(PYENV)/bin/activate
@@ -18,7 +18,7 @@ build: $(PYENV)/bin/activate
 
 $(PYENV)/bin/activate: checksum
 	test -d $(PYENV) || bash ./$(INSTALLER) -b -p $(PYENV)
-	$(PYTHON) -m pip install -U pip wheel setuptools build pytest
+	$(PYTHON) -m pip install -U pip wheel setuptools build
 	touch $(PYENV)/bin/activate
 
 checksum: $(INSTALLER) $(HASHFILE)
