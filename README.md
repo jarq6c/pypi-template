@@ -22,14 +22,14 @@ python -m pip install dist/my_package-0.1.0-py3-none-any.whl
 ```bash
 $ make setup
 ```
-This target builds the docker image.
+This target builds the docker image and is required by all other targets.
 
 ```bash
 $ make run
 ```
-This target runs the CLI application from a docker container indicated in `setup.cfg` with the arguments specified by `ARGUMENTS` in the `Makefile`.
+This target runs the CLI application from a docker container indicated in `setup.cfg` with the arguments specified by `ARGUMENTS` in the `Makefile`. This target is mainly a convenience and reference for users. CLI arguments are more easily changed by running this underlying command directly from the command prompt.
 
 ```bash
 $ make tests
 ```
-This target runs `pytest` on the code in the image created by `setup` in a docker container.
+This target runs `pytest` on the code in the image created by "setup" in a docker container.
