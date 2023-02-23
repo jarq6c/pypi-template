@@ -16,4 +16,4 @@ COPY README.md README.md
 COPY src src
 COPY tests tests
 RUN python3 -m pip install .[develop]
-ENTRYPOINT [ "/usr/local/bin/python3" ]
+ENTRYPOINT [ "/usr/local/bin/python3", "-m", "build"]
