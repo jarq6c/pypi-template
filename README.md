@@ -24,7 +24,7 @@ python3 -m twine upload dist/*
 python3 -m pip install my_package
 ```
 
-See [Packaging Python Project](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for more details on uploading your package.
+See [Packaging Python Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for more details on uploading your package.
 
 ## Other targets
 
