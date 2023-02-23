@@ -6,7 +6,6 @@ COPY requirements.py requirements.py
 COPY setup.cfg setup.cfg
 RUN python3 requirements.py > requirements.txt
 RUN python3 -m pip install -r requirements.txt
-ENTRYPOINT [ "/usr/local/bin/python3" ]
 
 FROM builder
 COPY EXCLUDE EXCLUDE
@@ -17,3 +16,4 @@ COPY README.md README.md
 COPY src src
 COPY tests tests
 RUN python3 -m pip install .[develop]
+ENTRYPOINT [ "/usr/local/bin/python3" ]
