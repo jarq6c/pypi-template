@@ -2,7 +2,7 @@ TAG=my-tag
 APP=my-cli
 ARGUMENTS=-c 5 -r 7
 
-.PHONY: setup run tests build
+.PHONY: build setup run tests
 
 build: tests
 	# docker cp CONTAINER:/var/logs/ /tmp/app_logs
