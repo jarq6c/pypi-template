@@ -1,32 +1,35 @@
 # Generic Python Project
 
-This template can be used as a starting point for building distributable Python packages. It includes a Makefile with targets to build a wheel and a reproducible Python virtual environment based on miniconda. To learn more about packaging in Python see the [Python Packaging User Guide](https://packaging.python.org/).
+This template can be used as a starting point for building distributable Python packages. It includes a Makefile with targets to setup, run, test, and build a final installable PyPI compatible package. To learn more about packaging in Python see the [Python Packaging User Guide](https://packaging.python.org/).
 
 ## Build
 
 ```bash
 $ make
 ```
-Running `make` in this directory will build the default target "build". The chain of dependencies for the default target includes targets that retrieve a miniconda installation script for Linux and creates a stand-alone miniconda environment with the required dependencies. The name of the miniconda environment is `miniconda3` and can be activated as normal using `source miniconda3/bin/activate` and deactivated using `conda deactivate`. The build target runs `python -m build` which collects the required files and packages in `src` and generates an install wheel under `dist`. 
-
-To start from scratch run clean:
-```bash
-$ make clean
-```
+Running `make` in this directory will build the default target "build". The chain of dependencies for the default target includes targets that build a docker image with development dependencies. This target will also run `pytest` and `build`, and copy the resulting `dist` directory with `.whl` and `.tar.gz` packages into the currect directory.
 
 ## Installation
 
 After running build, you can install the default package by running
 
 ```
-miniconda3/bin/python -m pip install dist/hello-0.1.0-py3-none-any.whl
+python -m pip install dist/my_package-0.1.0-py3-none-any.whl
 ```
 
-## Testing
+## Other targets
 
-An example test is in `tests/test_hello.py`. This test uses `pytest` to test the `greet` function. You can read more about using `pytest` at the [PyTest Documentation](https://docs.pytest.org/). To run all tests just use:
-
+```bash
+$ make setup
 ```
-miniconda3/bin/python -m pytest
-```
+This target builds the docker image.
 
+```bash
+$ make run
+```
+This target runs the CLI application from a docker container indicated in `setup.cfg` with the arguments specified by `ARGUMENTS` in the `Makefile`.
+
+```bash
+$ make tests
+```
+This target runs `pytest` on the code in the image created by `setup` in a docker container.
