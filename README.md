@@ -17,6 +17,15 @@ After running build, you can install the default package by running
 python -m pip install dist/my_package-0.1.0-py3-none-any.whl
 ```
 
+...or, assuming you have an API token and a valid [`.pypirc` file](https://packaging.python.org/en/latest/specifications/pypirc/) you can upload and install your package from PyPI with
+
+```bash
+python3 -m twine upload dist/*
+python3 -m pip install my_package
+```
+
+See [Packaging Python Project](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for more details on uploading your package.
+
 ## Other targets
 
 ```bash
