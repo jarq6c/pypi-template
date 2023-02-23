@@ -1,17 +1,19 @@
 # syntax=docker/dockerfile:1
-FROM python:3.10-slim
-
+FROM python:3.10-slim AS builder
 RUN python3 -m pip install -U pip wheel setuptools
-
-# Install dependencies
 WORKDIR /project/install
 COPY requirements.py requirements.py
 COPY setup.cfg setup.cfg
-RUN python requirements.py > requirements.txt
-RUN pip3 install -r requirements.txt
+RUN python3 requirements.py > requirements.txt
+RUN python3 -m pip install -r requirements.txt
+ENTRYPOINT [ "/usr/local/bin/python3" ]
 
-# For more portability
-# ENTRYPOINT [ "/bin/sh" ]
-
-# For more features
-ENTRYPOINT [ "/bin/bash" ]
+FROM builder
+COPY EXCLUDE EXCLUDE
+COPY LICENSE LICENSE
+COPY MANIFEST.in MANIFEST.in
+COPY pyproject.toml pyproject.toml
+COPY README.md README.md
+COPY src src
+COPY tests tests
+RUN python3 -m pip install .[develop]
