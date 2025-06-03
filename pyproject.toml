@@ -23,7 +23,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "numpy"
+    "click",
+    "pandas"
 ]
 dynamic = ["version"]
 
