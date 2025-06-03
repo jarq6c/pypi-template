@@ -109,6 +109,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+miniconda3/
+Miniconda3*
+sha256sum.txt
 
 # Spyder project settings
 .spyderproject
